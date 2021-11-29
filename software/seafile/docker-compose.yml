@@ -7,7 +7,7 @@ services:
       - MYSQL_ROOT_PASSWORD=db_dev  # [IMPORTANT] Change the mySQL root password
       - MYSQL_LOG_CONSOLE=true
     volumes:
-      - /mnt/data/software/seafile/mysql:/var/lib/mysql  # [IMPORTANT] Change the data directory to your data disk
+      - /mnt/data/portadisk/software/seafile/mysql:/var/lib/mysql  # [IMPORTANT] Change the data directory to your data disk
     networks:
       - seafile-net
 
@@ -24,7 +24,7 @@ services:
     ports:
       - "1337:80" # Don't change this
     volumes:
-      - /mnt/data/software/seafile/data:/shared   # [IMPORTANT] Change the data directory to your data disk
+      - /mnt/data/portadisk/software/seafile/data:/shared   # [IMPORTANT] Change the data directory to your data disk
     environment:
       - DB_HOST=db
       - DB_ROOT_PASSWD=db_dev  # [IMPORTANT] set this to your mySQL password.

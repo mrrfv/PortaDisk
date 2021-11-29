@@ -1,18 +1,30 @@
-# PortaDisk - Cheap Raspberry Pi Portable & Secure NAS Project
+# PortaDisk - Affordable Raspberry Pi Portable & Secure NAS Project
 
-**Project Status:** Early work in progress
+**Project Status:** Early work in progress. web-unlock is still not ready for production (nor development) use.
 
 Yet another Raspberry Pi project, a concept for now (until I get all the needed parts). This repository mainly focuses on the software side.
 
 ## My personal feature wishlist
 
 - Raspberry Pi Zero running Seafile on Docker.
-- Disk and RAM usage reported using [Blinkt](https://thepihut.com/products/blinkt).
+- Data & backup drive unlocking through a web browser. (working on implementation)
+- Disk and RAM usage reported using [Blinkt](https://thepihut.com/products/blinkt). (to implement)
+- A separate WiFi network for access outside your home, without proxy services. (RaspAP?)
 - Highest data security with LUKS encryption on the data drive.
 - Weekly backups of both the data drive and root partition to a separate hard drive.
-- A separate WiFi network for access outside your home, without proxy services.
-- Data & backup drive unlocking through a web browser.
 - All of this in a small package that can be carried in a backpack.
+
+PRs are welcome.
+
+## Directory structure (Software)
+
+### Root directory
+
+- `/portadisk/config/` - stores configuration files, mainly for web-unlock.
+
+### Data drive
+
+- `/portadisk/software/` - stores data and configuration files for Seafile and other software that might store sensitive data or isn't needed during the "encrypted" phase (i.e. when the drives weren't unlocked yet)
 
 ## Hardware
 
@@ -29,6 +41,23 @@ Yet another Raspberry Pi project, a concept for now (until I get all the needed 
 ## Installation guide
 
 This guide assumes you have a fresh Raspbian Lite installation already set up with updates installed.
+
+### Zram (compresses RAM)
+
+```bash
+sudo apt install git
+git clone https://github.com/foundObjects/zram-swap.git
+cd zram-swap && sudo ./install.sh --install
+sudo apt purge git
+```
+
+### Misc SD card lifespan tweaks
+
+```bash
+sudo apt-get remove dphys-swapfile
+echo "tmpfs /var/tmp tmpfs nodev,nosuid,size=35M 0 0" >> /etc/fstab
+echo "tmpfs /tmp tmpfs nodev,nosuid,size=35M 0 0" >> /etc/fstab
+```
 
 ### Docker
 
