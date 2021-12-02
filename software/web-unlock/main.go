@@ -19,7 +19,9 @@ type Configuration struct {
 func unlockDrive(device string, mountpoint string, password string) (int, error) {
 	unlock_command := exec.Command("cryptsetup", "luksOpen", device, mountpoint, "-d -")
 	unlock_stdin, err := unlock_command.StdinPipe()
-	return 1, err
+	if nil != err {
+		return 1, err
+	}
 	unlock_stdin.Write([]byte(password))
 	if err := unlock_command.Run(); nil != err {
 		return 1, err
