@@ -4,9 +4,11 @@
 
 Yet another Raspberry Pi project, a concept for now (until I get all the needed parts). This repository mainly focuses on the software side.
 
-## My personal feature wishlist
+## Concept
 
-- Raspberry Pi Zero running Seafile on Docker.
+### My personal feature wishlist
+
+- Raspberry Pi Zero (or a x86 machine) running Seafile on Docker.
 - Data & backup drive unlocking through a web browser. (working on implementation)
 - Disk and RAM usage reported using [Blinkt](https://thepihut.com/products/blinkt). (to implement)
 - A separate WiFi network for access outside your home, without proxy services. (RaspAP?)
@@ -15,6 +17,19 @@ Yet another Raspberry Pi project, a concept for now (until I get all the needed 
 - All of this in a small package that can be carried in a backpack.
 
 PRs are welcome.
+
+### Hardware
+
+- Raspberry Pi Zero with a [USB hub HAT](https://www.waveshare.com/usb-hub-hat.htm).
+- Another USB hub that has support for external power.
+- Pi & the 2 hard drives connected to the second USB hub, which is connected to the HAT, which is connected to the Pi (hopefully this will work)
+- Pi, USB hub, hard drives and a power supply crammed into a camera case
+
+### Concept security considerations
+
+- Modification of the `web-unlock` binary to intercept the password during unlocking might be possible
+- HTTPS encryption should be a must when dealing with projects like this (caddy?)
+- `web-unlock` could be added to initramfs so that the root drive is also encrypted.
 
 ## Directory structure (Software)
 
@@ -25,18 +40,6 @@ PRs are welcome.
 ### Data drive
 
 - `/portadisk/software/` - stores data and configuration files for Seafile and other software that might store sensitive data or isn't needed during the "encrypted" phase (i.e. when the drives weren't unlocked yet)
-
-## Hardware
-
-- Raspberry Pi Zero with a [USB hub HAT](https://www.waveshare.com/usb-hub-hat.htm).
-- Another USB hub that has support for external power.
-- Pi & the 2 hard drives connected to the second USB hub, which is connected to the HAT, which is connected to the Pi (hopefully this will work)
-- Pi, USB hub, hard drives and a power supply crammed into a camera case
-
-## Concept security considerations
-
-- Modification of the `web-unlock` binary to intercept the password during unlocking might be possible
-- HTTPS encryption should be a must when dealing with projects like this (caddy?)
 
 ## Installation guide
 
