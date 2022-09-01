@@ -1,3 +1,9 @@
+# Stalled
+
+This project has been stalled for now. The Raspberry Pi Zero is way too underpowered for even encrypting data, and connecting multiple hard drives through USB is usually a bad idea due to the worse performance and reliability. I might look into hosting Syncthing in the future though, as it's very lightweight and (from my understanding) if a password is set, encrypts data before it is even sent to the Pi.
+
+---
+
 # PortaDisk - Affordable Raspberry Pi Portable & Secure NAS Project
 
 **Project Status:** Early work in progress. web-unlock is still not ready for production (nor development) use.
@@ -8,11 +14,11 @@ Yet another Raspberry Pi project, a concept for now (until I get all the needed 
 
 ### My personal feature wishlist
 
-- Raspberry Pi Zero (or a x86 machine) running Seafile on Docker.
+- Raspberry Pi Zero (or an x86 machine) running Seafile on Docker.
 - Data & backup drive unlocking through a web browser. (working on implementation)
 - Disk and RAM usage reported using [Blinkt](https://thepihut.com/products/blinkt). (to implement)
 - A separate WiFi network for access outside your home, without proxy services. (RaspAP?)
-- Highest data security with LUKS encryption on the data drive.
+- LUKS encryption on the data drive.
 - Weekly backups of both the data drive and root partition to a separate hard drive.
 - All of this in a small package that can be carried in a backpack.
 
